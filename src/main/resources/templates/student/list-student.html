@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<title>Student Directory</title>
+		 <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" 
+    crossorigin="anonymous">
+	</head>
+	<body>
+		
+		<div class = "container">
+		<h3>Student Directory</h3>
+		<hr>
+		<!-- Add a Button -->
+		<a th:href="@{/students/showFormToAdd}"
+			class="btn btn-primary btn-sm mb-3">
+			Add Student
+		</a>
+		
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Roll Number</th>
+					<th>Student Name</th>
+					<th>Student age</th>
+					<th>Action</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="tempStudent : ${student}">
+					<td th:text="${tempStudent.rno}" />
+					<td th:text="${tempStudent.sname}" />
+					<td th:text="${tempStudent.age}" />		
+					
+					<!-- Add update button-->
+					<td>
+						<a th:href="@{/students/showFormToUpdate(rno=${tempStudent.rno})}"
+							class="btn btn-info btn-sm">	
+							update
+						</a>
+					</td>	
+					<!-- Add delete button-->
+					<td>
+						<a th:href="@{/students/delete(rno=${tempStudent.rno})}"
+							class="btn btn-danger btn-sm"	
+							onclick="if(!(confirm('Are you sure you want to delete this Student?')))return false">
+							Delete
+						</a>
+					</td>			
+				</tr>
+				
+			</tbody>
+		</table>
+		</div>
+	</body>
+</html>
