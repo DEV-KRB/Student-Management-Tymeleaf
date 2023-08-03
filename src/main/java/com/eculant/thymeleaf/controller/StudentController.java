@@ -72,8 +72,5 @@ public class StudentController {
 		studentService.deleteStudent(rno);
 		return "redirect:/students/list";
 	}
-	
-	
-	
-	
+
 }
